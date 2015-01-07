@@ -41,8 +41,8 @@ module Fluent
       @redis.pipelined {
         chunk.open { |io|
           begin
-            MessagePack::Unpacker.new(io).each.each_with_index { |record, index|
-              @redis.mapped_hmset "#{record[0]}.#{index}", record[1]
+            MessagePack::Unpacker.new(io).each.each { |record|
+              @redis.rpush record[1]["url"], record[1].tap{|x| x.delete("url")}
             }
           rescue EOFError
             # EOFError always occured when reached end of chunk.
