@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency %q<fluentd>, ["~> 0.10.0"]
-  s.add_dependency %q<redis>, ["~> 2.2.2"]
+  s.add_dependency %q<redis>, ["~> 3.1.0"]
 end
